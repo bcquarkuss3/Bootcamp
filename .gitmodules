@@ -1,0 +1,24 @@
+[submodule "Users"]
+	path = Users
+	url = https://github.com/bcquarkuss3/Users
+[submodule "Cards"]
+	path = Cards
+	url = https://github.com/bcquarkuss3/Cards
+[submodule "Customers"]
+	path = Customers
+	url = https://github.com/bcquarkuss3/Customers
+[submodule "Operations"]
+	path = Operations
+	url = https://github.com/bcquarkuss3/Operations
+[submodule "Payments"]
+	path = Payments
+	url = https://github.com/bcquarkuss3/Payments
+[submodule "Products"]
+	path = Products
+	url = https://github.com/bcquarkuss3/Products
+[submodule "Queries"]
+	path = Queries
+	url = https://github.com/bcquarkuss3/Queries
+[submodule "Shopping"]
+	path = Shopping
+	url = https://github.com/bcquarkuss3/Shopping

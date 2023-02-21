@@ -1,0 +1,172 @@
+# Use postgres/example user/password credentials
+version: '3.7'
+
+services:
+  db-customer:
+    container_name: db-customer
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_customers
+    volumes:
+       - './postgres/db_customer:/var/lib/postgresql/data'
+    ports:
+      - "5430:5432"
+  db-product:
+    container_name: db-products
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_products
+    volumes:
+       - './postgres/db_products:/var/lib/postgresql/data'
+    ports:
+      - "5432:5432"
+  db-card:
+    container_name: db-card
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_cards
+    volumes:
+       - './postgres/db_cards:/var/lib/postgresql/data'
+    ports:
+      - "5431:5432"
+  db-operation:
+    container_name: db-operation
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_operations
+    volumes:
+       - './postgres/db_operations:/var/lib/postgresql/data'
+    ports:
+      - "5433:5432"
+  db-payment:
+    container_name: db-payment
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_payment
+    volumes:
+       - './postgres/db_payment:/var/lib/postgresql/data'
+    ports:
+      - "5434:5432"
+  db-shopping:
+    container_name: db-shopping
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_shopping
+    volumes:
+       - './postgres/db_shopping:/var/lib/postgresql/data'
+    ports:
+      - "5435:5432"
+  ms-customer:
+    container_name: ms-customer
+    image: jtromero/bq-ms-customers
+    restart: always
+    ports:
+      - 8003:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
+  ms-products:
+    container_name: ms-products
+    image: pedrodiaz/bq-ms-products
+    restart: always
+    ports:
+      - 8000:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
+  ms-cards:
+    container_name: ms-cards
+    image: pedrodiaz/bq-ms-cards
+    restart: always
+    ports:
+      - 8001:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
+  ms-operations:
+    container_name: ms-operations
+    image: jtromero/bq-ms-operations
+    restart: always
+    ports:
+      - 8002:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
+  ms-payments:
+    container_name: ms-payments
+    image: jtromero/bq-ms-payments
+    restart: always
+    ports:
+      - 8007:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
+  ms-shopping:
+    container_name: ms-shopping
+    image: pedrodiaz/bq-ms-shopping
+    restart: always
+    ports:
+      - 8008:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+  ms-user:
+    container_name: ms-user
+    image: jtromero/bq-ms-users
+    restart: always
+    ports:
+      - 8004:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
+  ms-queries:
+    container_name: ms-queries
+    image: pedrodiaz/bq-ms-queries
+    restart: always
+    ports:
+      - 8006:8080
+    depends_on:
+      - db-customer
+      - db-product
+      - db-card
+      - db-operation
+      - db-payment
+      - db-shopping
