@@ -22,3 +22,6 @@
 [submodule "Shopping"]
 	path = Shopping
 	url = https://github.com/bcquarkuss3/Shopping
+[submodule "MobileWallet"]
+	path = MobileWallet
+	url = https://github.com/bcquarkuss3/MobileWallet
