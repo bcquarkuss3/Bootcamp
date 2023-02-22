@@ -25,3 +25,6 @@
 [submodule "MobileWallet"]
 	path = MobileWallet
 	url = https://github.com/bcquarkuss3/MobileWallet
+[submodule "Promotions"]
+	path = Promotions
+	url = https://github.com/bcquarkuss3/Promotions
